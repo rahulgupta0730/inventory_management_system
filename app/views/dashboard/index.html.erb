@@ -1,0 +1,35 @@
+
+<% if !flash[:success].blank?  %>
+  <div class="container">
+    <div class="col bg-success text-center">
+      <p class="success_message"><%=flash[:success]%></p>
+    </div>
+  </div>
+<%end%>
+<div class="container">
+  <table id ="inventory_table" class="table table-hover table-striped table-bordered table-light table-fixed">
+    <thead>
+      <tr>
+      <th scope="col">SKU Codes</th>
+      <th scope="col">Product Name</th>
+      <% @warehouses.each do |warehouse| %>
+        <th scope="col"><%=warehouse.name.titlecase%>&nbsp;<%=warehouse.city%></th>
+      <%end%>
+      </tr>
+    </thead>
+    <tbody>
+      <%@products.each do |product|%>
+        <tr>
+          <td><a href="/threshold/<%=product.id%>/edit" style="color: #212529"><%=product.sku_code%></a></td>
+          <td><%=product.name%></td>
+          <%product.productthresholds.each do |productthreshold| %>
+            <td class="<%=below_threshold(productthreshold.id) ? 'bg-danger danger_message' : ''%>">
+              <%=productthreshold.count%>
+            </td>
+          <%end%>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+  <%= will_paginate @products, list_classes: %w(pagination justify-content-end) %>
+</div>

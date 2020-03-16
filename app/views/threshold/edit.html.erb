@@ -1,0 +1,34 @@
+<div class="container">
+  <%if !@productthresholds.blank? %>
+    <%=form_tag '/threshold/update', method: :post  do %>
+      <%= hidden_field_tag(:id ,params[:id])%>
+      <%@productthresholds.each do |resource| %>
+        <div class="row">
+          <div class="col">
+            <%= label_tag resource.warehouse.name , nil ,class: "custom_label_header"%>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1">
+            <%= label_tag "Threshold" , nil , class: "custom_label"%>
+          </div>
+          <div class="col">
+            <%=number_field_tag("[warehouse]#{resource.id}[threshold]" , resource.threshold ,{class: "form-control" , placeholder: "Threshold"})%>
+          </div>
+          <div class="col-md-1">
+            <%= label_tag "Counts" , nil , class: "custom_label" %>
+          </div>
+          <div class="col">
+            <%=number_field_tag("[warehouse]#{resource.id}[count]" ,resource.count , {class: "form-control " ,  placeholder: "Counts"})%>
+          </div>
+        </div>
+        <br>
+      <%end%>
+      <div class="text-right">
+        <%= submit_tag("Update Warehouses", class: "btn btn-primary button_style") %>      
+      </div>
+    <%end%>
+  <%else%>
+    <h1 class="text-center">No Warehouse located</h1>
+  <%end%>
+</div>

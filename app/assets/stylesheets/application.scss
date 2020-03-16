@@ -1,0 +1,31 @@
+@import "bootstrap/scss/bootstrap";
+.custom_label{
+  font-size: 1rem;
+  color: #212549;
+  font-weight: 600;
+  vertical-align: sub;
+}
+
+.custom_label_header{
+  font-size: 1.5rem;
+  color: #212549;
+  font-weight: 800;
+}
+.button_style{
+  font-weight:800;
+  font-size :1rem;
+}
+.success_message{
+  color: #ffffff;
+  font-weight: 600;
+}
+.danger_message{
+  color: #ffffff !important;
+  font-weight: 600;
+}
+tbody, thead{
+  text-align: center;
+}
+
+
+

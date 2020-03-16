@@ -1,0 +1,47 @@
+<%if @warehouse.errors.any?  %>
+  <div class="container">
+    <div class="col bg-danger text-center">
+      <% @warehouse.errors.full_messages.each do |message| %>
+        <p class="danger_message"><%= message %></p>
+      <% end %>
+    </div>
+  </div>
+  <br>
+<%end%>
+<div class="container">
+  <%= form_for @warehouse ,  url: '/warehouse/create', method: :post do |f| %>
+    <div class="row">
+      <div class="col-md-1">
+        <%= f.label :name, nil , class: "custom_label"  %>
+      </div>
+      <div class="col">
+        <%= f.text_field :name , {class: "form-control" ,  placeholder: "Name"}%>
+      </div>
+      <div class="col-md-1.5">
+        <%= label_tag :max_capacity , nil  , class: "custom_label" %>
+      </div>
+      <div class="col">
+        <%= f.number_field :max_capacity , {class: "form-control" ,  placeholder: "Max capacity"}%>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-1">
+        <%= f.label :pincode, nil , class: "custom_label"  %>
+      </div>
+      <div class="col">
+        <%= f.text_field :pincode , {class: "form-control" ,  placeholder: "Pincode"}%>
+      </div>
+      <div class="col-md-1">
+        <%= f.label :city, nil , class: "custom_label"  %>
+      </div>
+      <div class="col">
+        <%= f.select(:city, options_for_select([ "Mumbai", "Bangalore", "Delhi" ]), {}, {:class => 'form-control'})  %>
+      </div>
+    </div>
+    <br>
+    <div class="text-right">
+      <%= f.submit "Create Warehouse", class: "btn btn-primary button_style"%>      
+    </div>
+  <% end %>
+</div>
